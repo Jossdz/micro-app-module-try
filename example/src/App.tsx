@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import { StyleSheet, View } from 'react-native';
-import { BasicModule000View } from 'react-native-basic-module-000';
+import { MainModule } from 'react-native-basic-module-000';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <BasicModule000View color="#32a852" style={styles.box} />
+      <MainModule />
     </View>
   );
 }

@@ -1,26 +1,47 @@
-import {
-  requireNativeComponent,
-  UIManager,
-  Platform,
-  type ViewStyle,
-} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { View, Text } from 'react-native';
 
-const LINKING_ERROR =
-  `The package 'react-native-basic-module-000' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+// type HomeScreenProps = {
+//   navigation: any; // You can replace 'any' with the specific navigation prop type if available
+// };
 
-type BasicModule000Props = {
-  color: string;
-  style: ViewStyle;
+function HomeScreen() {
+  return (
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'red',
+      }}
+    >
+      <Text>Go to sign-in</Text>
+    </View>
+  );
+}
+
+function SignIn() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Sign-in</Text>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+export const MainModule: React.FC = () => {
+  return (
+    <View>
+      <NavigationContainer independent={true}>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="SignIn" component={SignIn} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </View>
+  );
 };
-
-const ComponentName = 'BasicModule000View';
-
-export const BasicModule000View =
-  UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<BasicModule000Props>(ComponentName)
-    : () => {
-        throw new Error(LINKING_ERROR);
-      };
